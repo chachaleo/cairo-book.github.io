@@ -13,7 +13,7 @@ level_players.append(10);
 
 But then you realize you can't increase the level once it's set. You cannot remove a player if the player dies unless he happens to be the first in the array.
 
-Fortunately, Cairo provides a handy built-in dictionary type called `Felt252Dict<T>` that allows us to build flexible data structures that can be modified. Let's explore how to use it to create a dynamic array implementation.
+Fortunately, Cairo provides a handy built-in [dictionary type](https://book.cairo-lang.org/ch03-02-dictionaries.html) called `Felt252Dict<T>` that allows us to build flexible data structures that can be modified. Let's explore how to use it to create a dynamic array implementation.
 
 ### Defining Our Ideal Interface 
 
@@ -48,9 +48,7 @@ Here is what our structure looks like:
 The key thing that makes this vector mutable is that we can insert into the dictionary to update values. For example, to set a new value at an index, we do:
 
 ```rust,noplayground
-fn set(ref self: NullableVector<T>, index: usize, value: T) {
-  self.data.insert(index.into(), nullable_from_box(BoxTrait::new(value)));
-}
+{{#include ../listings/ch03-common-collections/no_listing_13_cust_struct_vect/src/lib.cairo:set}}
 ```
 This overwrites any existing value at that index.
 
