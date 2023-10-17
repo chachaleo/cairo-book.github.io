@@ -39,6 +39,7 @@ fn hash_pedersen_struct() {
     
     let hash_felt252 = PedersenTrait::new(0).update_with(struct_to_hash).finalize();
     let hash_felt252_expected = PedersenTrait::new(0).update(0).update(1).update(1).update(2).update(false.into()).finalize();
+    
     assert(hash_felt252 == hash_felt252_expected, 'not equivalent');
 }
 
@@ -46,10 +47,10 @@ fn hash_pedersen_struct() {
 fn hash_poseidon_structure() {
     let struct_to_hash = StructForHash {first : 0, second : 1, third : (1,2), last : false};
 
-    let mut hash = PoseidonTrait::new().update_with(0);
+    let mut hash = PoseidonTrait::new().update(0);
     hash = hash.update(1);
     hash = hash.update(1);
-    hash = hash.update_with(2);
+    hash = hash.update(2);
     let hash_felt252 = hash.update_with(false).finalize();
 
     let hash_felt252_expected = PoseidonTrait::new().update_with(struct_to_hash).finalize();
