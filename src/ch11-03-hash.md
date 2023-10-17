@@ -20,14 +20,14 @@ Pedersen was introduced first, it is still used in storage (i.e. for Legacy Map)
 
 #### The Hash Trait
 
-First we need to import the PoseidonTrait and PedersenTrait,// and also the HashStateTrait and HashStateExTrait for Array
+First we need to import the PoseidonTrait and PedersenTrait : 
 ```rust
 use poseidon::PoseidonTrait;
 use pedersen::PedersenTrait;
 ```
 
 
-That HashTrait can be derrived on a function as follow :
+That HashTrait can be derrived on a structure as follow :
 
 ```rust
 #[derive(Drop,Hash)]
@@ -99,12 +99,3 @@ let hash_felt252 = hash.update(poseidon_hash_span(struct_to_hash.third.span())).
 ```
 
 
-
-Note: Pedersen hashing can be using calling directly this function :`pedersen(a: felt252, b: felt252) -> felt252`.
-
-```rust
-fn hash_pedersen() {
-    let a : felt252 = 10;
-    let hash_felt252 = pedersen::pedersen(0, a);
-}
-```
